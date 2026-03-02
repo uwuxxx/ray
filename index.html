@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ray</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Verdana, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#0b0b0b;
+color:white;
+}
+
+.wrapper{
+width:420px;
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.card{
+background:#151515;
+border-radius:26px;
+padding:22px;
+box-shadow:0 15px 40px rgba(0,0,0,.6);
+}
+
+.name{
+font-size:28px;
+font-weight:bold;
+}
+
+/* socials */
+
+.socials{
+display:flex;
+gap:12px;
+margin-top:14px;
+}
+
+.social-btn{
+width:48px;
+height:48px;
+border-radius:12px;
+border:none;
+background:#222;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.2s;
+}
+
+.social-btn:hover{
+background:#333;
+transform:scale(1.1);
+}
+
+.social-btn img{
+width:22px;
+height:22px;
+}
+
+/* profile */
+
+.profile{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.avatar{
+width:50px;
+height:50px;
+border-radius:50%;
+}
+
+/* music */
+
+.player{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.play{
+width:38px;
+height:38px;
+border-radius:10px;
+border:none;
+background:#222;
+color:white;
+cursor:pointer;
+}
+
+.bar{
+flex:1;
+height:4px;
+background:#333;
+border-radius:4px;
+overflow:hidden;
+}
+
+.progress{
+height:100%;
+width:0%;
+background:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="card">
+
+<div class="name">Ray</div>
+
+<div class="socials">
+
+<button class="social-btn" onclick="location.href='https://tiktok.com/@org.rayy'">
+<img src="https://simpleicons.org/icons/tiktok.svg">
+</button>
+
+<button class="social-btn" onclick="location.href='https://discord.com'">
+<img src="https://cdn.simpleicons.org/discord/white">
+</button>
+
+<button class="social-btn" onclick="location.href='htttps://example.com'">
+<img src="https://cdn.simpleicons.org/instagram/white">
+</button>
+
+<button class="social-btn" onclick="location.href='https://github.com'">
+<img src="https://cdn.simpleicons.org/github/white">
+</button>
+
+</div>
+
+</div>
+
+<div class="card profile">
+
+<img class="avatar"
+src="https://cdn.discordapp.com/avatars/1321552819232309289/5bb859abe340849e543119b6bf0e7cfe.png?size=4096">
+
+<div>
+<div>Ray</div>
+
+<div style="font-size:13px;opacity:.7">ogfn is good btw</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="player">
+
+<button class="play" id="play">▶</button>
+
+<div class="bar">
+<div class="progress" id="progress"></div>
+</div>
+
+<span id="time">0:00</span>
+
+</div>
+
+<audio id="audio" src="https://files.catbox.moe/itamah.mp3"></audio>
+
+</div>
+
+</div>
+
+<script>
+
+const audio=document.getElementById("audio")
+const play=document.getElementById("play")
+const progress=document.getElementById("progress")
+const time=document.getElementById("time")
+
+play.onclick=()=>{
+if(audio.paused){
+audio.play()
+play.innerHTML="⏸"
+}else{
+audio.pause()
+play.innerHTML="▶"
+}
+}
+
+audio.ontimeupdate=()=>{
+let percent=(audio.currentTime/audio.duration)*100
+progress.style.width=percent+"%"
+
+let m=Math.floor(audio.currentTime/60)
+let s=Math.floor(audio.currentTime%60)
+
+if(s<10)s="0"+s
+
+time.innerText=m+":"+s
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>
